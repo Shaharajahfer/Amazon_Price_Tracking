@@ -4,8 +4,8 @@ import lxml
 import smtplib
 
 MY_TARGET_PRICE = 100.01
-MY_EMAIL = "banushahara1@gmail.com"
-MY_PASSWORD = "banujahfer123"
+MY_EMAIL = "xxxxxxx@gmail.com"
+MY_PASSWORD = "xxxxxxx"
 URL = "https://www.amazon.com/Samsung-Galaxy-Wireless-Earbuds-Cancelling/dp/B08FSL1W9Z/ref=sr_1_8?crid=286KFDQ0W20RB&keywords=samsung+earpods+android+wireless&qid=1643637608&sprefix=samsung+earpo%2Caps%2C709&sr=8-8"
 header = {
     "Accept-Language": "en-US,en;q=0.9",
@@ -31,5 +31,5 @@ if price_in_float < MY_TARGET_PRICE:
     connection = smtplib.SMTP("smtp.gmail.com", port=587)
     connection.starttls()
     connection.login(user=MY_EMAIL, password=MY_PASSWORD)
-    connection.sendmail(from_addr=MY_EMAIL, to_addrs="banushahara1@gmail.com", msg=f"Subject: Amazon Price Alert!\n\n{message}")
+    connection.sendmail(from_addr=MY_EMAIL, to_addrs=MY_EMAIL, msg=f"Subject: Amazon Price Alert!\n\n{message}")
     connection.close()
