@@ -6,6 +6,8 @@ import smtplib
 MY_TARGET_PRICE = 100.01
 MY_EMAIL = "xxxxxxx@gmail.com"
 MY_PASSWORD = "xxxxxxx"
+
+#------------------------------------------GET PRODUCT DETAILS FROM AMAZON----------------------------------#
 URL = "https://www.amazon.com/Samsung-Galaxy-Wireless-Earbuds-Cancelling/dp/B08FSL1W9Z/ref=sr_1_8?crid=286KFDQ0W20RB&keywords=samsung+earpods+android+wireless&qid=1643637608&sprefix=samsung+earpo%2Caps%2C709&sr=8-8"
 header = {
     "Accept-Language": "en-US,en;q=0.9",
@@ -14,15 +16,20 @@ header = {
 response = requests.get(url=URL, headers=header)
 # print(response.text)
 
+#---------------------------------------PARSE PRODUCT TITLE AND PRICE------------------------------------------#
 soup = BeautifulSoup(response.text, "lxml")
 
+# Getting Title
 title = soup.find(id="productTitle").get_text().strip()
 print(title)
+
+# Getting Price
 price = soup.find(id="price_inside_buybox").getText()
 price_without_dollar = price.split("$")[1]
 price_in_float = float(price_without_dollar)
 print(f"Price: {price_in_float}")
 
+#-----------------------------------PRICE CONDITION AND EMAIL---------------------------------------------#
 if price_in_float < MY_TARGET_PRICE:
     print("Current price is less than the target price")
     current_price = price_in_float
